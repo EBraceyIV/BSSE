@@ -5,8 +5,13 @@
 import zipfile, os, re
 from pathlib import Path
 
+print('Bessie wants to know where to look for songs.')
+print('Ex.: C:/Desktop/PhatBeats')
 # Where you download the .zip files from bsaber.com to:
-p = Path(r'D:\Beats')
+songsPath = input('Enter directory: ')
+p = Path(songsPath)
+#p = Path(r'D:\Beats'), my own place for the time being
+
 # Where your custom levels for beat saber are installed:
 beatSaberLevels = Path(r'D:\SteamLibrary\steamapps\common\Beat Saber\Beat Saber_Data\CustomLevels')
 
