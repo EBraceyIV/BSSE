@@ -10,11 +10,15 @@ print('Ex.: C:/Desktop/PhatBeats')
 # Where you download the .zip files from bsaber.com to:
 songsPath = input('Enter directory: ')
 p = Path(songsPath)
-#p = Path(r'D:\Beats'), my own place for the time being
+#p = Path(r'D:\Beats'), my own place (for the time being)
 
+
+print('Bessie wants to know where to install your new songs.')
+print('Ex.: D:\SteamLibrary\steamapps\common\Beat Saber\Beat Saber_Data\CustomLevels')
 # Where your custom levels for beat saber are installed:
-beatSaberLevels = Path(r'D:\SteamLibrary\steamapps\common\Beat Saber\Beat Saber_Data\CustomLevels')
-
+installPath = input('Enter directory: ')
+beatSaberLevels = Path(installPath)
+#beatSaberLevels = Path(r'D:\SteamLibrary\steamapps\common\Beat Saber\Beat Saber_Data\CustomLevels'), my own place
 # Regular expression to find name of each song installed using text from "info.dat" in .zip file
 infoRegex = re.compile(r'"_songName": "(.*?)"')
 
@@ -30,9 +34,13 @@ try:
             print('That\'s not a song!')
             continue
         # Save extracted files in folder with name of song
-        beatZip.extractall(beatSaberLevels / songName)
-        # Confirm song added to library
-        print(songName + " added to Beat Saber Library")
-        beatZip.close()
+        try:
+            beatZip.extractall(beatSaberLevels / songName)
+        except FileNotFoundError:
+            print('The path you entered, "' + installPath + '" does not seem to be valid. Please check and try again.')
+        else:
+            # Confirm song added to library
+            print(songName + " added to Beat Saber Library")
+            beatZip.close()
 except FileNotFoundError:
-    print('The path you entered, "' + str(p) + '" does not seem to be valid. Please check and try again.')
+    print('The path you entered, "' + songsPath + '" does not seem to be valid. Please check and try again.')
