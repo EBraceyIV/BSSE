@@ -12,8 +12,9 @@ infoRegex = re.compile(r'"_songName": "(.*?)"')
 # Operate on each file in the .zip file download folder
 for filename in os.listdir(p):
     beatZip = zipfile.ZipFile(p / filename)
-    # "str(beatZip.read('info.dat'))" opens text from level info file
+    # Check if zip is actually a bsaber song
     try:
+        # "str(beatZip.read('info.dat'))" opens text from level info file
         songName = infoRegex.search(str(beatZip.read('info.dat'))).group(1)
     except KeyError:
         print('That\'s not a song!')
