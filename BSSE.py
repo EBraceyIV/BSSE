@@ -1,3 +1,7 @@
+#! python 3.8.2
+# EDBIV - 2020
+# BSSE: Beat Saber Song Extractor, aka Bessie
+
 import zipfile, os, re
 from pathlib import Path
 
