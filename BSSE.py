@@ -18,18 +18,21 @@ beatSaberLevels = Path(r'D:\SteamLibrary\steamapps\common\Beat Saber\Beat Saber_
 # Regular expression to find name of each song installed using text from "info.dat" in .zip file
 infoRegex = re.compile(r'"_songName": "(.*?)"')
 
-# Operate on each file in the .zip file download folder
-for filename in os.listdir(p):
-    beatZip = zipfile.ZipFile(p / filename)
-    # Check if zip is actually a bsaber song
-    try:
-        # "str(beatZip.read('info.dat'))" opens text from level info file
-        songName = infoRegex.search(str(beatZip.read('info.dat'))).group(1)
-    except KeyError:
-        print('That\'s not a song!')
-        continue
-    # Save extracted files in folder with name of song
-    beatZip.extractall(beatSaberLevels / songName)
-    # Confirm song added to library
-    print(songName + " added to Beat Saber Library")
-    beatZip.close()
+try:
+    # Operate on each file in the .zip file download folder
+    for filename in os.listdir(p):
+        beatZip = zipfile.ZipFile(p / filename)
+        # Check if zip is actually a bsaber song
+        try:
+            # "str(beatZip.read('info.dat'))" opens text from level info file
+            songName = infoRegex.search(str(beatZip.read('info.dat'))).group(1)
+        except KeyError:
+            print('That\'s not a song!')
+            continue
+        # Save extracted files in folder with name of song
+        beatZip.extractall(beatSaberLevels / songName)
+        # Confirm song added to library
+        print(songName + " added to Beat Saber Library")
+        beatZip.close()
+except FileNotFoundError:
+    print('The path you entered, "' + str(p) + '" does not seem to be valid. Please check and try again.')
