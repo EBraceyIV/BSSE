@@ -2,9 +2,6 @@
 # EDBIV - 2020
 # BSSE: Beat Saber Song Extractor, aka Bessie
 
-# TO FIX:
-# ' in song title makes folder name cut off, figure out fix
-
 import zipfile, os, re
 from pathlib import Path
 import tkinter as tk
