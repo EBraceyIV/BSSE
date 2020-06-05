@@ -1,2 +1,10 @@
 BSSE: Beat Saber Song Extractor
 BSSE (or Bessie) is designed to install songs from zip files downloaded from bsaber.com into your Beat Saber library
+
+Bessie will read through the zip files in a certain folder and check if they're for a Beat Saber song. If she finds one
+then she extracts the zip file to a folder with the same name of the song in Beat Saber's custom levels folder (or
+where ever you choose to put them).
+
+Bessie will open a file dialog to know where to extract songs from and install them too, respectively.
+I've ironed out a few interesting kinks that cropped up between song names and making the directories, but some
+undiscovered ones may exist. Use Bessie at your own risk.
